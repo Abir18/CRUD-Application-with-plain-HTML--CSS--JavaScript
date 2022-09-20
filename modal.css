@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+/* ***************************** */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 700px;
+    height: 550px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    color: #000;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    margin-right: 30px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#myModal input,
+textarea {
+    margin-bottom: 40px;
+    padding: 10px;
+    width: 95%;
+}
+
+/* #myModal textarea {
+  width: 95%;
+} */
+
+.modal-info {
+    /* margin: 50px; */
+    /* margin: 25px 50px; */
+    margin-left: 35px;
+}
+
+.form-control {
+    /* margin-bottom: 10px; */
+    /* padding-bottom: 20px; */
+    position: relative;
+}
+
+/* .form-control.error input {
+  border-color: #e74c3c;
+}
+.form-control.success input {
+  border-color: #2ecc71;
+}
+
+.form-control.error textarea {
+  border-color: #e74c3c;
+} */
+
+.form-control i {
+    visibility: hidden;
+    position: absolute;
+    /* top: 15%; */
+    /* right: 60px; */
+    top: 30px;
+    right: 7%;
+}
+
+.form-control.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+    color: #e74c3c;
+    visibility: visible;
+}
+
+.form-control small {
+    color: #e74c3c;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    visibility: hidden;
+}
+
+.form-control.error small {
+    visibility: visible;
+}
