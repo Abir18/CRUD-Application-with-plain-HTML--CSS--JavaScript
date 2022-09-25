@@ -5,7 +5,7 @@ const username = document.getElementById("username");
 const email = document.getElementById("useremail");
 const address = document.getElementById("useraddress");
 
-console.log(editForm, "Edited Form");
+// console.log(editForm, "Edited Form");
 
 editForm.addEventListener("submit", e => {
     console.log("edited form");

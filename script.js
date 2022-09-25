@@ -7,6 +7,7 @@ const userId = document.querySelector(".editId");
 const userName = document.querySelector(".editName");
 const userEmail = document.querySelector(".editEmail");
 const userAddress = document.querySelector(".editAddress");
+
 const list = document.querySelector("table");
 const update = document.querySelector(".update");
 
@@ -14,17 +15,17 @@ update.disabled = true;
 update.style.background = "#f3f3f3";
 update.style.color = "#ddd";
 
-userName.addEventListener("keyup", e => {
+userName.addEventListener("keyup", (e) => {
     update.disabled = false;
     update.style.background = "#fff";
     update.style.color = "#000";
 });
-userEmail.addEventListener("keyup", e => {
+userEmail.addEventListener("keyup", (e) => {
     update.disabled = false;
     update.style.background = "#fff";
     update.style.color = "#000";
 });
-userAddress.addEventListener("keyup", e => {
+userAddress.addEventListener("keyup", (e) => {
     update.disabled = false;
     update.style.background = "#fff";
     update.style.color = "#000";
@@ -32,65 +33,71 @@ userAddress.addEventListener("keyup", e => {
 
 let id = 1;
 
-let users = [];
+// let users = [];
 
-const fetchData = async () => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
-    const data = await response.json();
+// const fetchData = async () => {
+//     const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
+//     const data = await response.json();
 
-    users = [...data];
-    // console.log(users, "users");
-};
-fetchData();
+//     users = [...data];
+//     // console.log(users, "users");
+// };
+// fetchData();
 
-const tableBody = document.querySelector("tbody");
+let tableBody = document.querySelector("tbody");
+// console.log(tableBody);
 const rowElement = document.createElement("tr");
 
-const editUserName = document.querySelector(".editName");
-const editUserEmail = document.querySelector(".editEmail");
-const editUserAddress = document.querySelector(".editAddress");
-const editUserId = document.querySelector(".editId");
+// const editUserName = document.querySelector(".editName");
+// const editUserEmail = document.querySelector(".editEmail");
+// const editUserAddress = document.querySelector(".editAddress");
+// const editUserId = document.querySelector(".editId");
 
-const loadIntoTable = async (url, table) => {
-    const response = await fetch(url);
-    //   const { id, name, email } = await response.json();
-    const dataa = await response.json();
+// const loadIntoTable = async (url, table) => {
+//     const response = await fetch(url);
+//     //   const { id, name, email } = await response.json();
+//     const dataa = await response.json();
+//     console.log(users[0]);
 
-    editUserId.value = users[0].id;
-    editUserName.value = users[0].name;
-    editUserEmail.value = users[0].email;
-    editUserAddress.value = users[0].address.city;
+//     // editUserId.value = users[0].id;
+//     // editUserName.value = users[0].name;
+//     // editUserEmail.value = users[0].email;
+//     // editUserAddress.value = users[0].address.city
+//     //     ? users[0].address.city
+//     //     : users[0].address;
 
-    let tableData = "";
-    users.map(user => {
-        tableData += `
-    <tr data-id=${user.id}>
-    <td class="tableUserId-${user.id}">${user.id}</td>
-    <td class="tableUserName-${user.id}">${user.name}</td>
-    <td class="tableUserEmail-${user.id}">${user.email}</td>
-    <td class="tableUserAddress-${user.id}">${
-            user?.address?.city || "Germany"
-        }</td>
+//     let tableData = "";
+//     users.map((user) => {
+//         tableData += `
+//     <tr data-id=${user.id}>
+//     <td class="tableUserId-${user.id}">${user.id}</td>
+//     <td class="tableUserName-${user.id}">${user.name}</td>
+//     <td class="tableUserEmail-${user.id}">${user.email}</td>
+//     <td class="tableUserAddress-${user.id}">${
+//             user?.address?.city || "Germany"
+//         }</td>
 
-    <td class="button-layout">
-    ${
-        /* Comment in Template String */
-        /* <button id="edit-user" onclick="editUserInfo(${d.id})">Edit</button> */ ""
-        /* <button class="edit" id="edit-user">Edit</button> */
-    }
-    
-    <button class="edit" id="edit-user-${user.id}">Edit</button>
+//     <td class="button-layout">
+//     ${
+//         /* Comment in Template String */
+//         /* <button id="edit-user" onclick="editUserInfo(${d.id})">Edit</button> */ ""
+//         /* <button class="edit" id="edit-user">Edit</button> */
+//     }
 
-    <button id="delete-user-${user.id}" class='delete-btn'>Delete</button>
-    </td>
+//     <button class="edit" id="edit-user-${user.id}">Edit</button>
 
-    </tr>
-    `;
-        // console.log(tableData);
-    });
-    tableBody.innerHTML = tableData;
-    editList();
-};
+//     <button id="delete-user-${user.id}" class='delete-btn'>Delete</button>
+//     </td>
+
+//     </tr>
+//     `;
+//         // console.log(tableData);
+//     });
+//     console.log(tableBody);
+//     tableBody.innerHTML = tableData;
+//     table.children[1].innerHTML = tableData;
+//     editList();
+// };
 
 const resetForm = () => {
     console.log(id, "resetId");
@@ -107,7 +114,7 @@ const resetForm = () => {
 
     document
         .querySelectorAll(".form-control")
-        .forEach(element => (element.className = "form-control"));
+        .forEach((element) => (element.className = "form-control"));
 
     // document.querySelector(".editEmail").value = tableUserEmail;
     // document.querySelector(".editAddress").value = tableUserAddress;
@@ -116,7 +123,7 @@ const resetForm = () => {
 const editList = () => {
     // console.log(update);
 
-    list.addEventListener("click", async e => {
+    list.addEventListener("click", async (e) => {
         const url = `https://jsonplaceholder.typicode.com/users`;
         id = e.target.parentElement.parentElement.dataset.id;
 
@@ -171,10 +178,6 @@ const editList = () => {
             // userAddress.value = address?.city || "404 Not Found";
         }
 
-        if (updateButtonIsPressed) {
-            console.log("update button pressed");
-        }
-
         if (deleteButtonIsPressed) {
             if (confirm("Are you sure to delete this user?")) {
                 const deleteId = document.querySelector(`#delete-user-${id}`);
@@ -184,7 +187,7 @@ const editList = () => {
 
                 // console.log(id, 'id');
 
-                const filteredUsers = users.filter(user => user.id != id);
+                const filteredUsers = users.filter((user) => user.id != id);
 
                 users = [...filteredUsers];
                 // console.log(id, "id");
@@ -194,16 +197,19 @@ const editList = () => {
                 deleteId.parentElement.parentElement.remove();
                 // resetForm();
 
-                editUserId.value = filteredUsers[0].id;
-                editUserName.value = filteredUsers[0].name;
-                editUserEmail.value = filteredUsers[0].email;
-                editUserAddress.value = filteredUsers[0].address.city;
+                document.querySelector(".editId").value = filteredUsers[0]?.id;
+                document.querySelector(".editName").value =
+                    filteredUsers[0]?.name || "";
+                document.querySelector(".editEmail").value =
+                    filteredUsers[0]?.email || "";
+                document.querySelector(".editAddress").value =
+                    filteredUsers[0]?.address || "";
             }
         }
     });
 };
 
-update.addEventListener("click", e => {
+update.addEventListener("click", (e) => {
     e.preventDefault();
 
     const validName = editedUsernameValidation();
@@ -218,10 +224,10 @@ update.addEventListener("click", e => {
     if (confirm("Are you sure to update this user?")) {
         document
             .querySelectorAll(".form-control")
-            .forEach(element => (element.className = "form-control"));
+            .forEach((element) => (element.className = "form-control"));
 
         fetch(`https://jsonplaceholder.typicode.com/users/${userId.value}`, {
-            method: "PATCH",
+            method: "PUT",
             body: JSON.stringify({
                 id: userId.value,
                 name: userName.value,
@@ -232,54 +238,60 @@ update.addEventListener("click", e => {
                 "Content-type": "application/json; charset=UTF-8",
             },
         })
-            .then(response => response.json())
-            .then(data => {
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
                 const datasetId =
                     document.querySelector("table tbody tr")?.dataset.id;
 
-                if (userId.value === data.id) {
-                    // console.log("ID matched");
+                console.log(typeof userId.value, "userId.value");
+                console.log(typeof data.id, "data.id");
 
-                    const trow = tableBody.querySelector(`tr `);
+                if (parseInt(userId.value) === data.id) {
+                    console.log("Detected");
 
-                    let singRow = document.querySelector(
+                    // const trow = tableBody.querySelector(`tr `);
+
+                    let updatedRow = document.querySelector(
                         `[data-id='${data.id}']`
                     );
                     // console.log(singRow, "singRow");
 
                     // console.log(data, "updataaa");
 
-                    singRow.innerHTML = `
-          <tr data-id=${data.id}>
-          <td  class="tableUserId-${data.id}">${data.id}</td>
-          <td class="tableUserName-${data.id}">${
+                    updatedRow.innerHTML = `
+                        <tr data-id=${data.id}>
+                        <td  class="tableUserId-${data.id}">${data.id}</td>
+                        <td class="tableUserName-${data.id}">${
                         data?.name || "Leanne Graham"
                     }</td>
-          <td class="tableUserEmail-${data.id}">${
+                        <td class="tableUserEmail-${data.id}">${
                         data?.email || "abc@abc.com"
                     }</td>
-          <td class="tableUserAddress-${data.id}">${
+                        <td class="tableUserAddress-${data.id}">${
                         data?.address || "Germany"
                     }</td>
-          
-          <td>
-          ${
-              /* Comment in Template String */
-              /* <button id="edit-user" onclick="editUserInfo(${d.id})">Edit</button> */ ""
-          }
-          
-          <button class="edit" id="edit-user-${data.id}" >Edit</button>
-          <button id="delete-user-${data.id}" >Delete</button>
-          </td>
-          
-          </tr>
-          `;
+                        
+                        <td>
+                        ${
+                            /* Comment in Template String */
+                            /* <button id="edit-user" onclick="editUserInfo(${d.id})">Edit</button> */ ""
+                        }
+                        
+                        <button class="edit" id="edit-user-${
+                            data.id
+                        }" >Edit</button>
+                        <button id="delete-user-${data.id}" >Delete</button>
+                        </td>
+                        
+                        </tr>
+                        `;
                 }
             });
     }
 });
 
-loadIntoTable(
-    "https://jsonplaceholder.typicode.com/users",
-    document.querySelector("table")
-);
+// loadIntoTable(
+//     "https://jsonplaceholder.typicode.com/users",
+//     document.querySelector("table")
+// );

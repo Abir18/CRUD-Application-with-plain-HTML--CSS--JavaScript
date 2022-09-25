@@ -20,7 +20,7 @@ button:hover {
 }
 
 hr {
-    width: 95%;
+    width: 100%;
     border: 1px solid #000;
     margin-bottom: 20px;
 }
@@ -39,7 +39,7 @@ hr {
 
 .edit-section input,
 textarea {
-    min-width: 95%;
+    min-width: 100%;
     margin-bottom: 35px;
     padding: 8px;
     font-size: 16px;
@@ -72,6 +72,15 @@ td {
     border: 2px solid black;
     padding: 5px 10px;
     /* max-width: 2%; */
+    /* text-align: left; */
+    /* margin: 0 auto; */
+}
+
+td:first-child {
+    text-align: center;
+}
+td:last-child {
+    text-align: center;
 }
 
 button {

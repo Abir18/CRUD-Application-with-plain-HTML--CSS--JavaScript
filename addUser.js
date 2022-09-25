@@ -1,4 +1,6 @@
-const addNewUser = x => {
+const saveNewUser = document.querySelector(".submit");
+
+saveNewUser.onclick = () => {
     const tbody = document.querySelector("tbody");
     const tr = document.querySelector("tr");
     const td = document.querySelector("td");
@@ -14,7 +16,7 @@ const addNewUser = x => {
     if (!validName || !validEmail || !validAddress) {
         return;
     } else {
-        x.disabled = true;
+        saveNewUser.disabled = true;
         const lastId = parseInt(
             document.querySelector("[data-id]:last-child")?.dataset.id || 0
         );
@@ -31,8 +33,8 @@ const addNewUser = x => {
                 "Content-type": "application/json; charset=UTF-8",
             },
         })
-            .then(response => response.json())
-            .then(d => {
+            .then((response) => response.json())
+            .then((d) => {
                 users.push(d);
                 // console.log(d, "postData");
                 // console.log(users, "newAllData");
@@ -64,7 +66,7 @@ const addNewUser = x => {
 
                 document
                     .querySelectorAll(".form-control")
-                    .forEach(element => (element.className = "form-control"));
+                    .forEach((element) => (element.className = "form-control"));
             });
     }
 };
