@@ -1,8 +1,3 @@
-// Users Information in Table
-// const tableUserId = document.querySelector(`.tableUserId`);
-// const tableUserEmail = document.querySelector(".tableUserEmail");
-// const tableUserAddress = document.querySelector(".tableUserAddress");
-
 const userId = document.querySelector(".editId");
 const userName = document.querySelector(".editName");
 const userEmail = document.querySelector(".editEmail");
@@ -14,137 +9,44 @@ const update = document.querySelector(".update");
 update.disabled = true;
 update.style.background = "#f3f3f3";
 update.style.color = "#ddd";
+update.style.cursor = "not-allowed";
 
 userName.addEventListener("keyup", (e) => {
     update.disabled = false;
     update.style.background = "#fff";
     update.style.color = "#000";
+    update.style.cursor = "pointer";
 });
 userEmail.addEventListener("keyup", (e) => {
     update.disabled = false;
     update.style.background = "#fff";
     update.style.color = "#000";
+    update.style.cursor = "pointer";
 });
 userAddress.addEventListener("keyup", (e) => {
     update.disabled = false;
     update.style.background = "#fff";
     update.style.color = "#000";
+    update.style.cursor = "pointer";
 });
 
 let id = 1;
 
-// let users = [];
-
-// const fetchData = async () => {
-//     const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
-//     const data = await response.json();
-
-//     users = [...data];
-//     // console.log(users, "users");
-// };
-// fetchData();
-
 let tableBody = document.querySelector("tbody");
-// console.log(tableBody);
+
 const rowElement = document.createElement("tr");
 
-// const editUserName = document.querySelector(".editName");
-// const editUserEmail = document.querySelector(".editEmail");
-// const editUserAddress = document.querySelector(".editAddress");
-// const editUserId = document.querySelector(".editId");
-
-// const loadIntoTable = async (url, table) => {
-//     const response = await fetch(url);
-//     //   const { id, name, email } = await response.json();
-//     const dataa = await response.json();
-//     console.log(users[0]);
-
-//     // editUserId.value = users[0].id;
-//     // editUserName.value = users[0].name;
-//     // editUserEmail.value = users[0].email;
-//     // editUserAddress.value = users[0].address.city
-//     //     ? users[0].address.city
-//     //     : users[0].address;
-
-//     let tableData = "";
-//     users.map((user) => {
-//         tableData += `
-//     <tr data-id=${user.id}>
-//     <td class="tableUserId-${user.id}">${user.id}</td>
-//     <td class="tableUserName-${user.id}">${user.name}</td>
-//     <td class="tableUserEmail-${user.id}">${user.email}</td>
-//     <td class="tableUserAddress-${user.id}">${
-//             user?.address?.city || "Germany"
-//         }</td>
-
-//     <td class="button-layout">
-//     ${
-//         /* Comment in Template String */
-//         /* <button id="edit-user" onclick="editUserInfo(${d.id})">Edit</button> */ ""
-//         /* <button class="edit" id="edit-user">Edit</button> */
-//     }
-
-//     <button class="edit" id="edit-user-${user.id}">Edit</button>
-
-//     <button id="delete-user-${user.id}" class='delete-btn'>Delete</button>
-//     </td>
-
-//     </tr>
-//     `;
-//         // console.log(tableData);
-//     });
-//     console.log(tableBody);
-//     tableBody.innerHTML = tableData;
-//     table.children[1].innerHTML = tableData;
-//     editList();
-// };
-
-const resetForm = () => {
-    console.log(id, "resetId");
-    // e.preventDefault();
-    document.querySelector(".editName").value = document.querySelector(
-        `.tableUserName-${id}`
-    ).innerText;
-    document.querySelector(".editEmail").value = document.querySelector(
-        `.tableUserEmail-${id}`
-    ).innerText;
-    document.querySelector(".editAddress").value = document.querySelector(
-        `.tableUserAddress-${id}`
-    ).innerText;
-
-    document
-        .querySelectorAll(".form-control")
-        .forEach((element) => (element.className = "form-control"));
-
-    // document.querySelector(".editEmail").value = tableUserEmail;
-    // document.querySelector(".editAddress").value = tableUserAddress;
-};
-
 const editList = () => {
-    // console.log(update);
-
     list.addEventListener("click", async (e) => {
         const url = `https://jsonplaceholder.typicode.com/users`;
         id = e.target.parentElement.parentElement.dataset.id;
-
-        // console.log(e.target.id, "e.target.id");
-        // console.log(id, "dataset.id");
 
         let editButtonIsPressed = e.target.id === `edit-user-${id}`;
         let deleteButtonIsPressed = e.target.id === `delete-user-${id}`;
         let updateButtonIsPressed =
             e.target.parentElement.className === "update";
 
-        // console.log(e.target.parentElement, "parent");
-
-        // update.addEventListener("click", () => {
-        //   console.log("update button pressed");
-        // });
-
         if (editButtonIsPressed) {
-            // console.log("User Edited");
-            // console.log(id);
-
             const tableUserId = document.querySelector(
                 `.tableUserId-${id}`
             ).textContent;
@@ -157,45 +59,25 @@ const editList = () => {
             const tableUserAddress = document.querySelector(
                 `.tableUserAddress-${id}`
             ).textContent;
-            // console.log(tableUserName, "tableUserName")
-
-            // const response = await fetch(
-            //   `https://jsonplaceholder.typicode.com/users/${id}`
-            // );
-            // const data = await response.json();
-            // const { name, email, address } = await response.json();
-
-            // console.log(name, email, "singleUser");
-            // console.log(userId, "userId")
 
             const editUserId = document.querySelector(".editId");
-            // console.log(editUserId, "ew");
+
             userId.value = id;
             userName.value = tableUserName;
             userEmail.value = tableUserEmail;
-            // userEmail.value = email;
+
             userAddress.value = tableUserAddress || "404";
-            // userAddress.value = address?.city || "404 Not Found";
         }
 
         if (deleteButtonIsPressed) {
             if (confirm("Are you sure to delete this user?")) {
                 const deleteId = document.querySelector(`#delete-user-${id}`);
-                // const deleteId = document.getElementById("delete-user-" + id);
-                // console.log(deleteId, "idp");
-                // console.log(id, "oo");
-
-                // console.log(id, 'id');
 
                 const filteredUsers = users.filter((user) => user.id != id);
 
                 users = [...filteredUsers];
-                // console.log(id, "id");
-
-                // console.log(filteredUsers, "filteredUsers");
 
                 deleteId.parentElement.parentElement.remove();
-                // resetForm();
 
                 document.querySelector(".editId").value = filteredUsers[0]?.id;
                 document.querySelector(".editName").value =
@@ -250,14 +132,9 @@ update.addEventListener("click", (e) => {
                 if (parseInt(userId.value) === data.id) {
                     console.log("Detected");
 
-                    // const trow = tableBody.querySelector(`tr `);
-
                     let updatedRow = document.querySelector(
                         `[data-id='${data.id}']`
                     );
-                    // console.log(singRow, "singRow");
-
-                    // console.log(data, "updataaa");
 
                     updatedRow.innerHTML = `
                         <tr data-id=${data.id}>
@@ -290,8 +167,3 @@ update.addEventListener("click", (e) => {
             });
     }
 });
-
-// loadIntoTable(
-//     "https://jsonplaceholder.typicode.com/users",
-//     document.querySelector("table")
-// );

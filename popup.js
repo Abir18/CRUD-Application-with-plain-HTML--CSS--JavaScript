@@ -12,7 +12,6 @@ let span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
 btn.onclick = function () {
-    // let modal = document.getElementById("myModal");
     modal.style.display = "block";
     document.querySelector(".submit").disabled = false;
 };

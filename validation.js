@@ -5,25 +5,19 @@ const username = document.getElementById("username");
 const email = document.getElementById("useremail");
 const address = document.getElementById("useraddress");
 
-// console.log(editForm, "Edited Form");
-
-editForm.addEventListener("submit", e => {
+editForm.addEventListener("submit", (e) => {
     console.log("edited form");
     e.preventDefault();
 });
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    // console.log(checkInputs());
 
     const val = {
         name: username.value,
         email: email.value,
         address: address.value,
     };
-
-    // console.log(val);
 
     return val;
 });
@@ -88,7 +82,6 @@ const editedUsernameValidation = () => {
     if (editedName.value.trim() === "") {
         setErrorFor(editedName, "*Username cannot be blank");
     } else if (editedName.value.length <= 5) {
-        // console.log(username.value.length);
         setErrorFor(editedName, "*Username must be at least 5 characters");
     } else if (editedName.value.length > 20) {
         setErrorFor(editedName, "*Username must less than 20 characters");
@@ -134,20 +127,14 @@ editedEmail.addEventListener("blur", editedEmailValidation);
 editedAddress.addEventListener("keyup", editedAddressValidation);
 editedAddress.addEventListener("blur", editedAddressValidation);
 
-// const checkInputs = () => {
-//   return [usernameValidation(), emailValidation(), addressValidation()];
-// };
-
 const setErrorFor = (input, message) => {
     const formControl = input.parentElement;
     const small = formControl.querySelector("small");
     formControl.className = "form-control error";
     small.innerText = message;
-    //   console.log(message, "message");
-    //   console.log(small, "small");
 };
 
-const setSuccessFor = input => {
+const setSuccessFor = (input) => {
     const formControl = input.parentElement;
     formControl.className = "form-control success";
 };

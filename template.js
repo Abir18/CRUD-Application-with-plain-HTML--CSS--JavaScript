@@ -103,7 +103,7 @@ const newUserModal = () => {
     modalAddressLabel.setAttribute("for", "useraddress");
     const modalAddressInput = document.createElement("textarea");
     modalAddressInput.setAttribute("id", "useraddress");
-    modalAddressInput.setAttribute("rows", "8");
+    modalAddressInput.setAttribute("rows", "5");
     modalAddressInput.setAttribute("cols", "30");
     modalAddressInput.className = "newUserAddress";
     const errorAddress = document.createElement("small");
