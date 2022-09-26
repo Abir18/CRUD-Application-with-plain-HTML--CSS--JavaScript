@@ -28,6 +28,8 @@ const usernameValidation = () => {
     } else if (username.value.length <= 5) {
         console.log(username.value.length);
         setErrorFor(username, "*Username must be at least 5 characters");
+    } else if (!checkValidName(username.value)) {
+        setErrorFor(username, "*Not a valid Name");
     } else if (username.value.length > 20) {
         setErrorFor(username, "*Username must less than 20 characters");
     } else {
@@ -85,6 +87,8 @@ const editedUsernameValidation = () => {
         setErrorFor(editedName, "*Username must be at least 5 characters");
     } else if (editedName.value.length > 20) {
         setErrorFor(editedName, "*Username must less than 20 characters");
+    } else if (!checkValidName(editedName.value)) {
+        setErrorFor(editedName, "*Not a valid Name");
     } else {
         setSuccessFor(editedName);
         return editedName.value;
@@ -143,4 +147,8 @@ function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         email
     );
+}
+
+function checkValidName(name) {
+    return /[a-zA-Z]+[ a-zA-Z]*/.test(name);
 }
